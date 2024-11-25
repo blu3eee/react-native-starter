@@ -240,7 +240,15 @@ const Board = () => {
   }, [selectedPiece]);
 
   return (
-    <View>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+        gap: 20,
+      }}
+    >
       <View>
         {board.map((row, i) => (
           <View key={i} style={[{ flexDirection: "row" }]}>
@@ -280,6 +288,7 @@ const Board = () => {
                           newBoard[i][j] = selectedPiece.piece;
                           setBoard(newBoard);
                           setSelectedPiece(null);
+                          setCurrentSide((currentSide + 1) % 2);
                         }
                       }}
                     >
@@ -334,6 +343,18 @@ const Board = () => {
             ))}
           </View>
         ))}
+      </View>
+      <View>
+        <Text>It's {currentSide === 1 ? "red" : "black"} side turn</Text>
+      </View>
+      <View style={{ display: "flex", gap: 6 }}>
+        <TouchableOpacity
+          onPress={() => {
+            setBoard(initialBoard);
+          }}
+        >
+          <Text>Restart game</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
