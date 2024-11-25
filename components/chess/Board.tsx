@@ -1,13 +1,9 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { initialBoard } from "./pieces";
 import ChessPiece, { ChessPieceProps } from "./Piece";
 
 type ChessPieceOnBoard = { i: number; j: number; piece: ChessPieceProps };
-
-const piecesPossibleMovements = {
-  pawn: ["f1", "f2"],
-};
 
 const Board = () => {
   const [board, setBoard] = React.useState(initialBoard);
