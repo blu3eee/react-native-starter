@@ -8,7 +8,7 @@ type ChessPieceOnBoard = { i: number; j: number; piece: ChessPieceProps };
 const Board = () => {
   const [board, setBoard] = React.useState(initialBoard);
 
-  const [currentSide, setCurrentSide] = React.useState(0);
+  const [currentSide, setCurrentSide] = React.useState(1);
   const [selectedPiece, setSelectedPiece] =
     React.useState<ChessPieceOnBoard | null>(null);
 
@@ -256,6 +256,7 @@ const Board = () => {
           <View key={i} style={[{ flexDirection: "row" }]}>
             {row.map((piece, j) => (
               <View
+                key={j}
                 style={[
                   {
                     width: 40,
@@ -362,12 +363,30 @@ const Board = () => {
         ))}
       </View>
       <View>
-        <Text>It's {currentSide === 1 ? "red" : "black"} side turn</Text>
+        <Text>
+          It's{" "}
+          <Text
+            style={{
+              color: currentSide === 1 ? "red" : "black",
+              fontWeight: "700",
+            }}
+          >
+            {currentSide === 1 ? "red" : "black"}
+          </Text>{" "}
+          side turn
+        </Text>
       </View>
       <View style={{ display: "flex", gap: 6 }}>
         <TouchableOpacity
           onPress={() => {
             setBoard(initialBoard);
+          }}
+          style={{
+            paddingHorizontal: 16,
+            paddingVertical: 8,
+            backgroundColor: "#A1CEDC",
+            borderRadius: 8,
+            alignSelf: "center",
           }}
         >
           <Text>Restart game</Text>

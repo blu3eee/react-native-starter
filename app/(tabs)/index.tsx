@@ -24,17 +24,23 @@ export default function HomeScreen() {
         />
       }
     >
-      <View className="bg-black">
-        <Text className="text-2xl font-bold text-blue-500">
-          Using nativewind!
-        </Text>
-      </View>
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
       </ThemedView>
-      <Link replace href={"/game"}>
-        Enter a game
+      <Link
+        replace
+        href={"/game"}
+        style={{
+          paddingHorizontal: 16,
+          paddingVertical: 8,
+          backgroundColor: "#A1CEDC",
+          borderRadius: 8,
+          alignSelf: "center",
+          fontSize: 16,
+        }}
+      >
+        Enter a chess game
       </Link>
     </ParallaxScrollView>
   );
