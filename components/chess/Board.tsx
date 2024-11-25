@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { initialBoard } from "./pieces";
 import ChessPiece, { ChessPieceProps } from "./Piece";
 
@@ -247,9 +247,15 @@ const Board = () => {
         alignItems: "center",
         flexDirection: "column",
         gap: 20,
+        padding: 20,
       }}
     >
-      <View>
+      <View
+        style={{
+          borderWidth: 2,
+          borderColor: "black",
+        }}
+      >
         {board.map((row, i) => (
           <View key={i} style={[{ flexDirection: "row" }]}>
             {row.map((piece, j) => (
@@ -284,6 +290,21 @@ const Board = () => {
                       onPress={() => {
                         if (selectedPiece) {
                           const newBoard = board.map((r) => r.slice());
+                          if (newBoard[i][j]?.name === "king") {
+                            Alert.alert(
+                              "Game Over",
+                              `The ${newBoard[i][j]?.side === 1 ? "black" : "red"} side won`,
+                              [
+                                {
+                                  text: "Restart",
+                                  onPress: () => {
+                                    setBoard(initialBoard);
+                                  },
+                                },
+                              ],
+                            );
+                          }
+
                           newBoard[selectedPiece.i][selectedPiece.j] = null;
                           newBoard[i][j] = selectedPiece.piece;
                           setBoard(newBoard);
