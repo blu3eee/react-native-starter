@@ -98,6 +98,7 @@ const Board = () => {
         // look in 8 directions for possible movements
         const possibleMove = [];
         const moves = [];
+
         if (i + 2 < 8 && board[i + 2][j] === null) {
           if (j + 1 < 8) {
             moves.push({ i: i + 2, j: j + 1 });
@@ -282,8 +283,16 @@ const Board = () => {
                         }
                       }}
                     >
-                      <Text style={{ color: "red", fontWeight: "700" }}>
-                        {board[i][j] ? "x" : "o"}
+                      <Text
+                        style={{
+                          color: "red",
+                          fontWeight: "300",
+                          fontSize: 36,
+                        }}
+                      >
+                        {board[i][j] && board[i][j].side !== currentSide
+                          ? "x"
+                          : "."}
                       </Text>
                     </TouchableOpacity>
                   ) : selectedPiece?.i === i &&
@@ -302,7 +311,7 @@ const Board = () => {
                   ))}
                 <TouchableOpacity
                   onPress={() => {
-                    if (piece.side !== currentSide) {
+                    if (piece?.side !== currentSide) {
                       return;
                     }
                     if (selectedPiece) {
