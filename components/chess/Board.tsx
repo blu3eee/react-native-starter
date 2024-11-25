@@ -240,8 +240,8 @@ const Board = () => {
   }, [selectedPiece]);
 
   return (
-    <View className="">
-      <View className="flex-col gap-2 bg-blue-500">
+    <View>
+      <View>
         {board.map((row, i) => (
           <View key={i} style={[{ flexDirection: "row" }]}>
             {row.map((piece, j) => (
