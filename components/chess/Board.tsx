@@ -1,9 +1,18 @@
 import React, { useMemo } from "react";
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { initialBoard } from "./pieces";
 import ChessPiece, { ChessPieceProps } from "./Piece";
 
 type ChessPieceOnBoard = { i: number; j: number; piece: ChessPieceProps };
+
+const { width } = Dimensions.get("window");
 
 const Board = () => {
   const [board, setBoard] = React.useState(initialBoard);
@@ -259,8 +268,8 @@ const Board = () => {
                 key={j}
                 style={[
                   {
-                    width: 40,
-                    height: 40,
+                    width: (width - 40) / 8,
+                    height: (width - 40) / 8,
                     justifyContent: "center",
                     alignItems: "center",
                   },
