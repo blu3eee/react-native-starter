@@ -65,6 +65,21 @@ const Board = () => {
             }
           }
         }
+        // check for diagonal moves
+        const diagonalMoves = [
+          { i: i - 1, j: j - 1 },
+          { i: i - 1, j: j + 1 },
+        ];
+        if (piece.side === 0) {
+          diagonalMoves[0] = { i: i + 1, j: j - 1 };
+          diagonalMoves[1] = { i: i + 1, j: j + 1 };
+        }
+        for (let move of diagonalMoves) {
+          const checkResult = ifCanMoveHere({ i, j, piece }, move);
+          if (checkResult.canMove && checkResult.target === "enemy") {
+            result.push(move);
+          }
+        }
         return result;
       }
       case "rook": {
@@ -244,6 +259,8 @@ const Board = () => {
     }
   }, [selectedPiece]);
 
+  const boardSlotSize = (width - 40) / 8;
+
   return (
     <View
       style={{
@@ -268,8 +285,8 @@ const Board = () => {
                 key={j}
                 style={[
                   {
-                    width: (width - 40) / 8,
-                    height: (width - 40) / 8,
+                    width: boardSlotSize,
+                    height: boardSlotSize,
                     justifyContent: "center",
                     alignItems: "center",
                   },
@@ -288,8 +305,8 @@ const Board = () => {
                       style={{
                         position: "absolute",
                         zIndex: 2,
-                        width: 40,
-                        height: 40,
+                        width: boardSlotSize,
+                        height: boardSlotSize,
                         justifyContent: "center",
                         alignItems: "center",
                       }}
@@ -337,8 +354,8 @@ const Board = () => {
                       style={{
                         position: "absolute",
                         zIndex: 2,
-                        width: 40,
-                        height: 40,
+                        width: boardSlotSize,
+                        height: boardSlotSize,
                         justifyContent: "center",
                         alignItems: "center",
                         backgroundColor: "rgba(0,0,0,0.5)",
