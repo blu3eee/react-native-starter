@@ -16,7 +16,7 @@ export default function GameScreen() {
       <Stack.Screen options={{ title: "Chess" }} />
       <ScrollView>
         <View>
-          <Board></Board>
+          <Board />
         </View>
 
         <View className="p-4">
