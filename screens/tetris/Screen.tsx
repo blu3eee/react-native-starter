@@ -52,6 +52,7 @@ export const TetrisScreen = () => {
   );
 };
 
+// AsyncDisposableStack
 const TetrisBoard = ({
   board,
   currentPiece,
