@@ -6,6 +6,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { Link } from "expo-router";
 
+// asd
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
