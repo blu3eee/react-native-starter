@@ -1,11 +1,4 @@
-import {
-  Image,
-  StyleSheet,
-  Platform,
-  Text,
-  Touchable,
-  View,
-} from "react-native";
+import { Image, StyleSheet } from "react-native";
 
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
@@ -13,6 +6,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { Link } from "expo-router";
 
+// test quick PR
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
@@ -30,7 +24,7 @@ export default function HomeScreen() {
       </ThemedView>
       <Link
         replace
-        href={"/game"}
+        href={"/chess"}
         style={{
           paddingHorizontal: 16,
           paddingVertical: 8,
@@ -41,6 +35,20 @@ export default function HomeScreen() {
         }}
       >
         Enter a chess game
+      </Link>
+      <Link
+        replace
+        href={"/tetris"}
+        style={{
+          paddingHorizontal: 16,
+          paddingVertical: 8,
+          backgroundColor: "#A1CEDC",
+          borderRadius: 8,
+          alignSelf: "center",
+          fontSize: 16,
+        }}
+      >
+        Enter a tetris game
       </Link>
     </ParallaxScrollView>
   );
